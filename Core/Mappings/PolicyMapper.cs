@@ -10,7 +10,6 @@ public static class PolicyMapper
     {
         var sitePolicies = websites.Select(x => new Policy
         {
-            Id = Guid.NewGuid(),
             Target = x,
             Type = PolicyType.Website,
             Enabled = true
@@ -18,7 +17,6 @@ public static class PolicyMapper
 
         var appPolicies = apps.Select(x => new Policy
         {
-            Id = Guid.NewGuid(),
             Target = x,
             Type = PolicyType.Application,
             Enabled = true

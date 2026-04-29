@@ -32,7 +32,7 @@
                                                    VerticalAlignment="Center"
                                                    FontSize="14"/>
 
-                                        <!-- BOTÃO REMOVER -->
+                                        <!-- BOTÃO REMOVER 
                                         <Button Content="X"
                                                 Width="30"
                                                 Height="25"
@@ -41,7 +41,7 @@
                                                 Foreground="White"
                                                 FontWeight="Bold"
                                                 Command="{Binding DataContext.RemoveWebsiteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                                CommandParameter="{Binding}" />
+                                                CommandParameter="{Binding}" />-->
 
                                     </DockPanel>
                                 </Border>
@@ -77,7 +77,7 @@
                                                    VerticalAlignment="Center"
                                                    FontSize="14"/>
 
-                                        <!-- BOTÃO REMOVER -->
+                                        <!-- BOTÃO REMOVER 
                                         <Button Content="X"
                                                 Width="30"
                                                 Height="25"
@@ -86,7 +86,7 @@
                                                 Foreground="White"
                                                 FontWeight="Bold"
                                                 Command="{Binding DataContext.RemoveAppCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                                CommandParameter="{Binding}" />
+                                                CommandParameter="{Binding}" />-->
 
                                     </DockPanel>
                                 </Border>
