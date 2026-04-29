@@ -1,4 +1,6 @@
-﻿namespace Core.Services;
+﻿using System.Diagnostics;
+
+namespace Core.Services;
 
 public interface IPolicyEnforcer
 {

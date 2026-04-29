@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System.Diagnostics;
+using Core;
 using Core.Enums;
 using Core.Services;
 using Infra.OS;

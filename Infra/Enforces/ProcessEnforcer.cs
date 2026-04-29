@@ -15,12 +15,19 @@ public class ProcessEnforcer : IPolicyEnforcer
 
         foreach (var app in apps)
         {
-            var processes = Process.GetProcessesByName(app);
+            var processes = FindProcesses(app);
 
             foreach (var p in processes)
                 p.Kill();
         }
 
         return Task.CompletedTask;
+    }
+    
+    private static IEnumerable<Process> FindProcesses(string app)
+    {
+        var name = app.Replace(".exe", "", StringComparison.OrdinalIgnoreCase);
+
+        return Process.GetProcessesByName(name);
     }
 }
