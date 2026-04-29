@@ -6,15 +6,18 @@ namespace Infra.Persistence;
 
 public class JsonPolicyStore : IPolicyStore
 {
-    private readonly string _path = "policies.json";
+    private readonly string _path;
 
-    public async Task<IEnumerable<Policy>> GetAllAsync()
+    public JsonPolicyStore()
     {
-        if (!File.Exists(_path))
-            return new List<Policy>();
+        var folder = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+            "SysGuard"
+        );
 
-        var json = await File.ReadAllTextAsync(_path);
-        return JsonSerializer.Deserialize<List<Policy>>(json);
+        Directory.CreateDirectory(folder);
+
+        _path = Path.Combine(folder, "policies.json");
     }
 
     public async Task SaveAsync(IEnumerable<Policy> policies)
@@ -25,5 +28,16 @@ public class JsonPolicyStore : IPolicyStore
         });
 
         await File.WriteAllTextAsync(_path, json);
+    }
+
+    public async Task<IEnumerable<Policy>> GetAllAsync()
+    {
+        if (!File.Exists(_path))
+            return new List<Policy>();
+
+        var json = await File.ReadAllTextAsync(_path);
+
+        return JsonSerializer.Deserialize<List<Policy>>(json)
+               ?? new List<Policy>();
     }
 }
