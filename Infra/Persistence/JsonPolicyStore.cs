@@ -16,4 +16,14 @@ public class JsonPolicyStore : IPolicyStore
         var json = await File.ReadAllTextAsync(_path);
         return JsonSerializer.Deserialize<List<Policy>>(json);
     }
+
+    public async Task SaveAsync(IEnumerable<Policy> policies)
+    {
+        var json = JsonSerializer.Serialize(policies, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+
+        await File.WriteAllTextAsync(_path, json);
+    }
 }

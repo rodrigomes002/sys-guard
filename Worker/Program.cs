@@ -1,7 +1,24 @@
+using Core.Services;
+using Infra.Enforces;
+using Infra.Persistence;
 using Worker;
 
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<GuardWorker>();
+Host.CreateDefaultBuilder(args)
+    .UseWindowsService()
+    .ConfigureServices((context, services) =>
+    {
+        // STORE
+        services.AddSingleton<IPolicyStore, JsonPolicyStore>();
 
-var host = builder.Build();
-host.Run();
+        // ENFORCERS
+        services.AddSingleton<IPolicyEnforcer, HostsEnforcer>();
+        services.AddSingleton<IPolicyEnforcer, ProcessEnforcer>();
+
+        // CORE
+        services.AddSingleton<PolicyEngine>();
+
+        // WORKER
+        services.AddHostedService<GuardWorker>();
+    })
+    .Build()
+    .Run();

@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker", "Worker\Worker.csproj", "{36899548-64DB-4B38-992D-AD1C8B90CD48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{1ED35E4B-0A4B-443B-862E-04361A6B6514}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{36899548-64DB-4B38-992D-AD1C8B90CD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36899548-64DB-4B38-992D-AD1C8B90CD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36899548-64DB-4B38-992D-AD1C8B90CD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED35E4B-0A4B-443B-862E-04361A6B6514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED35E4B-0A4B-443B-862E-04361A6B6514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED35E4B-0A4B-443B-862E-04361A6B6514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED35E4B-0A4B-443B-862E-04361A6B6514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
