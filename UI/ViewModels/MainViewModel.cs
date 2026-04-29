@@ -37,11 +37,10 @@ public class MainViewModel
 
         AddAppCommand = new RelayCommand(AddApp);
         RemoveAppCommand = new RelayCommand(RemoveApp);
+        
+        _ = LoadAsync();
     }
 
-    // =========================
-    // ADD WEBSITE
-    // =========================
     private async void AddWebsite(object obj)
     {
         var result = _dialog.ShowInputDialog("Adicionar site");
@@ -61,9 +60,6 @@ public class MainViewModel
         await SaveAsync();
     }
 
-    // =========================
-    // REMOVE WEBSITE
-    // =========================
     private async void RemoveWebsite(object obj)
     {
         if (obj is PolicyViewModel item)
@@ -73,9 +69,6 @@ public class MainViewModel
         }
     }
 
-    // =========================
-    // ADD APP
-    // =========================
     private async void AddApp(object obj)
     {
         var result = _dialog.ShowInputDialog("Adicionar aplicativo");
@@ -95,9 +88,6 @@ public class MainViewModel
         await SaveAsync();
     }
 
-    // =========================
-    // REMOVE APP
-    // =========================
     private async void RemoveApp(object obj)
     {
         if (obj is PolicyViewModel item)
@@ -106,10 +96,7 @@ public class MainViewModel
             await SaveAsync();
         }
     }
-
-    // =========================
-    // SAVE JSON
-    // =========================
+   
     private async Task SaveAsync()
     {
         var websiteTargets = Websites.Select(x => x.Target);
@@ -118,5 +105,28 @@ public class MainViewModel
         var policies = PolicyMapper.Map(websiteTargets, appTargets);
 
         await _store.SaveAsync(policies);
+    }
+    
+
+    private async Task LoadAsync()
+    {
+        var policies = await _store.GetAllAsync();
+
+        Websites.Clear();
+        Applications.Clear();
+
+        foreach (var p in policies.Where(p => p.Enabled))
+        {
+            var vm = new PolicyViewModel
+            {
+                Target = p.Target,
+                Type = p.Type
+            };
+
+            if (p.Type == PolicyType.Website)
+                Websites.Add(vm);
+            else if (p.Type == PolicyType.Application)
+                Applications.Add(vm);
+        }
     }
 }
